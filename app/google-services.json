@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "20016572435",
+    "project_id": "doctorplus-e5e25",
+    "storage_bucket": "doctorplus-e5e25.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:20016572435:android:3bda306495c69e3d4977e6",
+        "android_client_info": {
+          "package_name": "com.example.doctorplus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "20016572435-s994f6t3a9a91s96lspsjagonkjcms3l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD05XnrxBZ6Y-tOQBwqDKZjKMP5ftk9XC0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "20016572435-s994f6t3a9a91s96lspsjagonkjcms3l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

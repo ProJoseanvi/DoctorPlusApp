@@ -10,10 +10,11 @@
 
     <TextView
         android:id="@+id/TextHacer"
-        android:layout_width="177dp"
-        android:layout_height="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="400dp"
         android:layout_marginEnd="220dp"
-        android:layout_marginBottom="150dp"
         android:lineSpacingExtra="8sp"
         android:text="@string/TextPregunta"
         android:textAlignment="center"
@@ -22,16 +23,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextSizeCheck" />
 
     <Button
         android:id="@+id/buttonCreaReceta"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="520dp"
         android:layout_marginEnd="100dp"
         android:text="@string/ButtonCrea"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +76,8 @@
         app:layout_constraintEnd_toEndOf="@+id/textViewNombreUsuario"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textViewNombreUsuario"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNombreUsuario" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewNombreUsuario"
+        tools:text="@string/textViewNombre" />
 
     <TextView
         android:id="@+id/textViewId"
@@ -88,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewId3" />
 
     <TextView
-        android:id="@+id/textViewRol"
+        android:id="@+id/textViewRole"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -105,7 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="196dp"
-        android:text="TextView"
+        android:text="@string/textViewNombreUsuario"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"

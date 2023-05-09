@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewOthersName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewId3" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewOthersRole"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -79,7 +79,8 @@
         android:text="@string/ButtonBuscarReceta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="VisualLintButtonSize" />
 
     <TextView
         android:id="@+id/textViewNombre3"
@@ -102,10 +103,10 @@
         android:text="@string/TextViewId3"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="@+id/textViewOthersName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="@+id/textViewOthersName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOthersName" />
 
     <TextView
         android:id="@+id/textViewUserRol3"

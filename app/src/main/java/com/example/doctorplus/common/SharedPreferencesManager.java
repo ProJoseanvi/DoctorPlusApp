@@ -1,4 +1,4 @@
-package com.example.doctorplus.Common;
+package com.example.doctorplus.common;
 
 import android.content.Context;
 import android.content.SharedPreferences;
