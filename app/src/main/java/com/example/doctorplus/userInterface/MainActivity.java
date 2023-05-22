@@ -74,6 +74,10 @@ import retrofit2.Response;
         private void goToLogin() {
             String id = etNumberId.getText().toString();
             String password = etPassword.getText().toString();
+            SharedPreferencesManager.setSomeStringValue(Constantes.USER_ROLE, "");
+            SharedPreferencesManager.setSomeStringValue(Constantes.USER_ID, "");
+            SharedPreferencesManager.setSomeStringValue(Constantes.USER_NAME, "");
+            SharedPreferencesManager.setSomeStringValue(Constantes.USER_TOKEN, "");
 
             if(id.isEmpty()) {
                 etNumberId.setError("La Id es requerida");
@@ -90,7 +94,11 @@ import retrofit2.Response;
                     @Override
                     public void onResponse(@NonNull Call<ResponseAuth> call, @NonNull Response<ResponseAuth> response) {
                         if(response.isSuccessful()) {
-                            
+                            SharedPreferencesManager.setSomeStringValue(Constantes.USER_ROLE, response.body().getRol());
+                            SharedPreferencesManager.setSomeStringValue(Constantes.USER_ID, response.body().getUserId());
+                            SharedPreferencesManager.setSomeStringValue(Constantes.USER_NAME, response.body().getNombre());
+                            SharedPreferencesManager.setSomeStringValue(Constantes.USER_TOKEN, response.body().getAccessToken());
+
                             Toast.makeText(MainActivity.this, "Sesión iniciada correctamente", Toast.LENGTH_SHORT).show();
 
                             //Cuando hacemos login de manera exitosa nos lleva  otra activity, en este caso a la activity MedicUser
@@ -98,10 +106,6 @@ import retrofit2.Response;
 
                             assert response.body() != null;
                             if(ROLE_MEDIC.equals(response.body().getRol())){
-                                SharedPreferencesManager.setSomeStringValue(Constantes.USER_ROLE, response.body().getRol());
-                                SharedPreferencesManager.setSomeStringValue(Constantes.USER_ID, response.body().getUserId());
-                                SharedPreferencesManager.setSomeStringValue(Constantes.USER_NAME, response.body().getNombre());
-                                SharedPreferencesManager.setSomeStringValue(Constantes.USER_TOKEN, response.body().getAccessToken());
                                 Intent i = new Intent(MainActivity.this, MedicUser.class);
                                 startActivity(i);
 

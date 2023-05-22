@@ -11,8 +11,7 @@ import retrofit2.http.POST;
 
 public interface DoctorPlusService {
 
-    //Aqui añadimos nuestro primer servicio el POST para hacer Login
+    //Aqui añadimos nuestro primer servicio el POST para hacer Login, son servicios sin securizar
     @POST("login")
     Call<ResponseAuth> doLogin(@Body RequestLogin requestLogin);
-
 }

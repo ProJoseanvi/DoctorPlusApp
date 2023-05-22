@@ -7,7 +7,7 @@
     android:background="@color/teal_700">
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imageViewLogoReverse"
         android:layout_width="102dp"
         android:layout_height="92dp"
         android:layout_marginStart="275dp"
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewReceta3"
+        android:id="@+id/textViewRecipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -48,30 +48,30 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewNumReceta2" />
 
     <TextView
-        android:id="@+id/textViewNumUser4"
+        android:id="@+id/textViewNumberUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/TextViewUser4"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewReceta3"
+        app:layout_constraintEnd_toEndOf="@+id/textViewRecipe"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewReceta3"
-        app:layout_constraintTop_toBottomOf="@+id/textViewReceta3" />
+        app:layout_constraintStart_toStartOf="@+id/textViewRecipe"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRecipe" />
 
     <TextView
-        android:id="@+id/textViewNumUsuario4"
+        android:id="@+id/textViewNumbUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/TextViewUsuario5"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewNumUser4"
+        app:layout_constraintEnd_toEndOf="@+id/textViewNumberUser"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewNumUser4"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNumUser4" />
+        app:layout_constraintStart_toStartOf="@+id/textViewNumberUser"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNumberUser" />
 
     <TextView
         android:id="@+id/textViewPaciente2"
@@ -81,13 +81,13 @@
         android:text="@string/TextViewPaciente5"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewNumUsuario4"
+        app:layout_constraintEnd_toEndOf="@+id/textViewNumbUser"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewNumUsuario4"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNumUsuario4" />
+        app:layout_constraintStart_toStartOf="@+id/textViewNumbUser"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNumbUser" />
 
     <TextView
-        android:id="@+id/textViewPaciente3"
+        android:id="@+id/textViewPacient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -107,13 +107,13 @@
         android:text="@string/TextViewFecha5"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewPaciente3"
+        app:layout_constraintEnd_toEndOf="@+id/textViewPacient"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewPaciente3"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPaciente3" />
+        app:layout_constraintStart_toStartOf="@+id/textViewPacient"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPacient" />
 
     <TextView
-        android:id="@+id/textViewFecha4"
+        android:id="@+id/textViewDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -133,13 +133,13 @@
         android:text="@string/TextViewMedicamento2"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewFecha4"
+        app:layout_constraintEnd_toEndOf="@+id/textViewDate"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewFecha4"
-        app:layout_constraintTop_toBottomOf="@+id/textViewFecha4" />
+        app:layout_constraintStart_toStartOf="@+id/textViewDate"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/textViewMeds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -159,13 +159,13 @@
         android:text="@string/TextViewTomas4"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView14"
+        app:layout_constraintEnd_toEndOf="@+id/textViewMeds"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintStart_toStartOf="@+id/textViewMeds"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMeds" />
 
     <TextView
-        android:id="@+id/textViewTomas5"
+        android:id="@+id/textViewNumberTomas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -193,7 +193,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/buttonNuevaBusqueda2"
+        android:id="@+id/buttonNewSearch"
         android:layout_width="187dp"
         android:layout_height="52dp"
         android:layout_marginStart="30dp"

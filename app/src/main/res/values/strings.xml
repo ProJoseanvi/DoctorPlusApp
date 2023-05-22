@@ -191,4 +191,13 @@
     <string name="EditTextMedName">Nombre medicamento</string>
     <string name="EditTextTomas">Tomas diarias</string>
     <string name="BttnCreateReceta">Create</string>
+    <string name="EtHintPaciente">Este es el nombre</string>
+    <string name="tvNumeroAsignado">Número de receta:</string>
+    <string name="tvTomas">Tomas diarias:</string>
+    <string name="acMedicines">medicamentos</string>
+    <string name="acMedicine">Medicamentos</string>
+    <string name="acMedsHint">Medicamentos</string>
 </resources>
+
+
+

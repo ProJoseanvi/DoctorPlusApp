@@ -4,68 +4,74 @@ import static com.example.doctorplus.common.Constantes.USER_ID;
 import static com.example.doctorplus.common.Constantes.USER_NAME;
 import static com.example.doctorplus.common.Constantes.USER_ROLE;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.doctorplus.R;
 import com.example.doctorplus.common.SharedPreferencesManager;
 
-public class MedicUser extends AppCompatActivity implements View.OnClickListener{
-   TextView tvRole, tvId, tvNombre;
-    Button btnCreaReceta;
+import java.util.Objects;
 
-    @SuppressLint("SetTextI18n")
+public class MedicUser extends AppCompatActivity implements View.OnClickListener {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.medic_user);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
-        tvRole = findViewById(R.id.textViewRole);
-        tvId = findViewById(R.id.textViewId);
-        tvNombre = findViewById(R.id.textViewNombre);
+        TextView textViewRole = findViewById(R.id.textViewRole);
+        TextView textViewId = findViewById(R.id.textViewId);
+        TextView textViewNombre = findViewById(R.id.textViewNombre);
 
+        textViewRole.setText(SharedPreferencesManager.getSomeStringValue(USER_ROLE));
+        textViewId.setText(SharedPreferencesManager.getSomeStringValue(USER_ID));
+        textViewNombre.setText(SharedPreferencesManager.getSomeStringValue(USER_NAME));
 
-        tvRole.setText(SharedPreferencesManager.getSomeStringValue(USER_ROLE));
-        tvId.setText(SharedPreferencesManager.getSomeStringValue(USER_ID));
-        tvNombre.setText(SharedPreferencesManager.getSomeStringValue(USER_NAME));
+        Button buttonCreaReceta = findViewById(R.id.buttonCreaReceta);
+        buttonCreaReceta.setOnClickListener(this);
 
-        findViews();
-        events();
-    }
-
-    private void events() {
-        btnCreaReceta.setOnClickListener(this);
-    }
-
-    private void findViews() {
-        btnCreaReceta = findViewById(R.id.buttonCreaReceta);
+        Button buttonBuscarReceta = findViewById(R.id.buttonBuscarReceta);
+        buttonBuscarReceta.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        int id = v.getId();
-
-        if (id == R.id.buttonCreaReceta) {
+        if (v.getId() == R.id.buttonCreaReceta) {
             goToCreateReceta();
+        } else if (v.getId() == R.id.buttonBuscarReceta) {
+            goToBuscarReceta();
         }
     }
 
-    private void goToCreateReceta() {
-        Intent i = new Intent(MedicUser.this, Create.class);
-        startActivity(i);
+    /*@Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.buttonCreaReceta) {
+            goToCreateReceta();
+        }
 
-        // Destruimos este Activity para que no se pueda volver.
+        if (v.getId() == R.id.buttonBuscarReceta) {
+            goToBuscarReceta();
+        } else v.getId();
+    }*/
+
+    private void goToCreateReceta() {
+        Intent intent = new Intent(this, Create.class);
+        startActivity(intent);
         finish();
     }
+
+    private void goToBuscarReceta() {
+        Intent intent = new Intent(this, Search.class);
+        startActivity(intent);
+        finish();
+    }
+
 }
-
-
 
 

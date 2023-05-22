@@ -70,7 +70,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewUserRol3" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonSearchR"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"

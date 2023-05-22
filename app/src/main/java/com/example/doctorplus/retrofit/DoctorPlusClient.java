@@ -11,7 +11,10 @@ public class DoctorPlusClient {
     private static DoctorPlusClient instance = null;
     private DoctorPlusService doctorPlusService;
 
-    private DoctorPlusIdRecipeRequest doctorPlusIdRecipeRequest;
+    private DoctorPlusAuthServices doctorPlusIdRecipeRequest;
+
+    private DoctorPlusAuthServices doctorPlusSearchRecipeRequest;
+
     private Retrofit retrofit;
 
     public DoctorPlusClient () {
@@ -21,7 +24,7 @@ public class DoctorPlusClient {
                 .build();
 
         doctorPlusService = retrofit.create(DoctorPlusService.class);
-        doctorPlusIdRecipeRequest = retrofit.create(DoctorPlusIdRecipeRequest.class);
+        doctorPlusIdRecipeRequest = retrofit.create(DoctorPlusAuthServices.class);
 
     }
     //Patron Singleton
@@ -36,7 +39,11 @@ public class DoctorPlusClient {
         return doctorPlusService;
     }
 
-    public DoctorPlusIdRecipeRequest getDoctorPlusIdRecipeRequest () {
+    public DoctorPlusAuthServices getDoctorPlusIdRecipeRequest () {
         return doctorPlusIdRecipeRequest;
+    }
+
+    public DoctorPlusAuthServices getDoctorPlusSearchRecipeRequest () {
+        return doctorPlusSearchRecipeRequest;
     }
 }
