@@ -40,16 +40,9 @@ public class MedicUser extends AppCompatActivity implements View.OnClickListener
         buttonBuscarReceta.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.buttonCreaReceta) {
-            goToCreateReceta();
-        } else if (v.getId() == R.id.buttonBuscarReceta) {
-            goToBuscarReceta();
-        }
-    }
 
-    /*@Override
+
+    @Override
     public void onClick(View v) {
         if (v.getId() == R.id.buttonCreaReceta) {
             goToCreateReceta();
@@ -58,7 +51,7 @@ public class MedicUser extends AppCompatActivity implements View.OnClickListener
         if (v.getId() == R.id.buttonBuscarReceta) {
             goToBuscarReceta();
         } else v.getId();
-    }*/
+    }
 
     private void goToCreateReceta() {
         Intent intent = new Intent(this, Create.class);

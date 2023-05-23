@@ -94,6 +94,7 @@ import retrofit2.Response;
                     @Override
                     public void onResponse(@NonNull Call<ResponseAuth> call, @NonNull Response<ResponseAuth> response) {
                         if(response.isSuccessful()) {
+                            assert response.body() != null;
                             SharedPreferencesManager.setSomeStringValue(Constantes.USER_ROLE, response.body().getRol());
                             SharedPreferencesManager.setSomeStringValue(Constantes.USER_ID, response.body().getUserId());
                             SharedPreferencesManager.setSomeStringValue(Constantes.USER_NAME, response.body().getNombre());

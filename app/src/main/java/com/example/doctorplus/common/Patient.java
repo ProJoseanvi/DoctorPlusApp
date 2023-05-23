@@ -1,5 +1,7 @@
 package com.example.doctorplus.common;
 
+import androidx.annotation.NonNull;
+
 public class Patient {
 
     public Integer getId() {
@@ -22,6 +24,7 @@ public class Patient {
     }
 
 
+    @NonNull
     public String toString(){
         return this.name;
     }

@@ -6,75 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/teal_700">
 
-    <EditText
-        android:id="@+id/editTextNumerosReceta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@android:color/white"
-        android:ems="10"
-        android:hint="@string/NumerosReceta1"
-        android:inputType="number"
-        android:minHeight="48dp"
-        android:textColorHint="#000000"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewIdReceta"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewIdReceta"
-        app:layout_constraintTop_toBottomOf="@+id/textViewIdReceta"
-        tools:ignore="DuplicateSpeakableTextCheck" />
-
-    <EditText
-        android:id="@+id/editTextNumberUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@android:color/white"
-        android:ems="10"
-        android:hint="@string/NumeroMedico"
-        android:inputType="number"
-        android:minHeight="48dp"
-        android:textColorHint="#000000"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewNumeroUser"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewNumeroUser"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNumeroUser" />
-
-    <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@android:color/white"
-        android:ems="10"
-        android:hint="@string/TextFechaReceta"
-        android:inputType="date"
-        android:minHeight="48dp"
-        android:textColorHint="#000000"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewFecha2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewFecha2"
-        app:layout_constraintTop_toBottomOf="@+id/textViewFecha2" />
-
-    <EditText
-        android:id="@+id/editTextNumberTomas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:backgroundTint="@android:color/white"
-        android:ems="10"
-        android:hint="@string/NumberTomas"
-        android:inputType="number"
-        android:minHeight="48dp"
-        android:textColorHint="#000000"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView10"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
     <Button
         android:id="@+id/buttonBuscar"
         android:layout_width="0dp"
@@ -90,12 +21,12 @@
         tools:ignore="VisualLintButtonSize" />
 
     <ImageView
-        android:id="@+id/imageViewLogoSimpleBlanco"
+        android:id="@+id/imageViewLogoRewind"
         android:layout_width="101dp"
         android:layout_height="102dp"
         android:layout_marginStart="275dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
         android:contentDescription="@string/LogoBlancoSimple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,111 +37,88 @@
         android:id="@+id/textViewIdReceta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginEnd="205dp"
         android:text="@string/TextViewIdReceta"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.126"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewNumeroUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/TextViewNumeroUser"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumerosReceta"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextNumerosReceta"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumerosReceta" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="295dp"
         android:text="@string/TextViewPaciente3"
         android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumberUser"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextNumberUser"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberUser" />
-
-    <EditText
-        android:id="@+id/editTextPacienteNombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@android:color/white"
-        android:ems="10"
-        android:hint="@string/TextNombrePaciente3"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:textColorHint="#000000"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView7"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/autoCompleteRecipe" />
 
     <TextView
         android:id="@+id/textViewFecha2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="310dp"
         android:text="@string/TextViewFecha"
         android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPacienteNombre"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextPacienteNombre"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPacienteNombre" />
-
-    <TextView
-        android:id="@+id/textViewMedicamento3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/TextViewMedicamento3"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextDate"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextDate"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="165dp"
-        android:text="@string/TextViewTomas"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/autoCompleteMedicines" />
+        app:layout_constraintTop_toBottomOf="@+id/autoCompletePatient" />
 
     <AutoCompleteTextView
-        android:id="@+id/autoCompleteMedicines"
+        android:id="@+id/autoCompleteRecipe"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="165dp"
-        android:backgroundTint="@android:color/white"
-        android:hint="@string/acMedicine"
-        android:minHeight="48dp"
-        android:textColorHint="#000000"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="90dp"
+        android:hint="@string/AutoCompleteRecipe"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewMedicamento3" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewIdReceta" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompletePatient"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="90dp"
+        android:hint="@string/AutoCompletePatient"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="90dp"
+        android:hint="@string/AutoCompleteDate"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFecha2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
