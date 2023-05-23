@@ -197,6 +197,7 @@
     <string name="acMedicines">medicamentos</string>
     <string name="acMedicine">Medicamentos</string>
     <string name="acMedsHint">Medicamentos</string>
+    <string name="AutoCompletePatients">Datos de Paciente</string>
 </resources>
 
 

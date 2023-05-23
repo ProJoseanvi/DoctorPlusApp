@@ -7,21 +7,21 @@ public class ResponseCreateRecipe {
 
     @SerializedName("success")
     @Expose
-    Boolean success;
+    String success;
     @SerializedName("message")
     @Expose
     String message;
 
-    public ResponseCreateRecipe(Boolean success, String message) {
+    public ResponseCreateRecipe(String success, String message) {
         this.success = success;
         this.message = message;
     }
 
-    public Boolean getSuccess() {
+    public String getSuccess() {
         return success;
     }
 
-    public void setSuccess(Boolean success) {
+    public void setSuccess(String success) {
         this.success = success;
     }
 

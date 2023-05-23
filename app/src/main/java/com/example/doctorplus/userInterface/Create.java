@@ -8,6 +8,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -33,6 +34,7 @@ import com.example.doctorplus.retrofit.response.ResponseListPatients;
 import com.example.doctorplus.retrofit.response.ResponseRecipeId;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -43,15 +45,18 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Create extends AppCompatActivity {
-    private EditText patientEdt, dateCreationEdt, tomasEdt;
+
+    private EditText dateCreationEdt, tomasEdt;
     private Button createRecipeBtn;
     private ImageView ivPantallaAnterior;
-    private AutoCompleteTextView acMeds;
+    private AutoCompleteTextView acMeds, acPatients;
 
     private String recipeId;
     private List<Med> meds;
     private List<Patient> patients;
     private String recipeDate;
+
+    private Integer idPatientSelected;
 
     TextView tvNumeroAsignado, tvMensajeError;
 
@@ -71,7 +76,7 @@ public class Create extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-        patientEdt = findViewById(R.id.editTextPatientCreate);
+        acPatients = findViewById(R.id.autoCompletePatients);
         dateCreationEdt = findViewById(R.id.editTextDateCreation);
         acMeds = findViewById(R.id.autoCompleteMeds);
         tomasEdt = findViewById(R.id.editTextNumTomas);
@@ -80,26 +85,14 @@ public class Create extends AppCompatActivity {
         tvMensajeError = findViewById(R.id.textViewMensajeError);
         ivPantallaAnterior = findViewById(R.id.imageViewLogoCreate);
 
-
         findViews();
         events();
         retrofitInit();
-
-
-        /*ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_dropdown_item_1line, MEDICINES);
-        AutoCompleteTextView textView = (AutoCompleteTextView)
-                findViewById(R.id.autoCompleteMeds);
-        textView.setAdapter(adapter);*/
-
-
 
         generateRecipeId();
         generateListMeds();
         generateListPatients();
         generateRecipeDate();
-        // TODO Borrar esto chico, que es una chapucilla
-        tomasEdt.setText("2");
 
 
         // añadimos click listener al botón
@@ -127,8 +120,14 @@ public class Create extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     //Toast.makeText(Create.this, "Connection success!", Toast.LENGTH_SHORT).show();
                     patients = response.body().getPatients();
-                    // TODO Borrar esto chico, que es una chapucilla
-                    patientEdt.setText(patients.get(0).getName());
+                    acPatients.setAdapter(new ArrayAdapter<>(Create.this,  android.R.layout.simple_dropdown_item_1line, patients));
+                    acPatients.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Patient p = (Patient) parent.getItemAtPosition(position);
+                            idPatientSelected = p.getId();
+                        }
+                    });
                 } else {
                     Toast.makeText(Create.this, "No se ha logrado conectar con el servidor", Toast.LENGTH_SHORT).show();
                 }
@@ -158,12 +157,8 @@ public class Create extends AppCompatActivity {
 
                 if (response.isSuccessful()) {
                     Toast.makeText(Create.this, "Conexión exitosa", Toast.LENGTH_SHORT).show();
-                    /*assert response.body() != null;
-                    meds = response.body().getMeds();*/
-                    AutoCompleteTextView autoCompleteTextView = findViewById(R.id.autoCompleteMeds);
-                    ArrayAdapter<Med> adapter;
-                    adapter = new ArrayAdapter<>(Create.this, android.R.layout.simple_dropdown_item_1line, meds);
-                    autoCompleteTextView.setAdapter(adapter);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(Create.this, android.R.layout.simple_dropdown_item_1line, response.body().getMedsNames());
+                    acMeds.setAdapter(adapter);
 
                 } else {
                     Toast.makeText(Create.this, "No se ha logrado conectar con el servidor", Toast.LENGTH_SHORT).show();
@@ -186,6 +181,7 @@ public class Create extends AppCompatActivity {
 
                 if (response.isSuccessful()) {
                     Toast.makeText(Create.this, "Conexión exitosa", Toast.LENGTH_SHORT).show();
+                    tvNumeroAsignado.setText("");
                     tvNumeroAsignado.setText(response.body().getId());
                     recipeId = response.body().getId();
                 } else {
@@ -207,10 +203,6 @@ public class Create extends AppCompatActivity {
     private void findViews() {
 
     }
-
-    /*private static final String[] MEDICINES = new String[] {
-            "paracetamol", "valium", "apiretal", "zolpidem", "amoxicilina","lorazepam","diazepam","fentanilo","risperidona","citalopram"
-    };*/
 
     private void postData(String recipeId, Integer patientId, String date, String medication, String tomas) {
 
@@ -234,10 +226,14 @@ public class Create extends AppCompatActivity {
                 Toast.makeText(Create.this, responseFromAPI.getMessage(), Toast.LENGTH_SHORT).show();
                 if (responseFromAPI.getSuccess().equals("ok")) {
                     generateRecipeId();
-                    patientEdt.setText("");
-                    dateCreationEdt.setText("");
-                    acMeds.setText("");
+                    generateListMeds();
+                    generateListPatients();
+                    generateRecipeDate();
+
                     tomasEdt.setText("");
+                    acMeds.setText("");
+                    acPatients.setText("");
+
                 }
 
             }
@@ -252,14 +248,7 @@ public class Create extends AppCompatActivity {
     private void onClick(View v) {
         // validamos si campos de textos vacíos o no
         boolean error = false;
-        if (patientEdt.getText().toString().trim().isEmpty()) {
-            //patientEdt.setBackgroundColor(Color.RED);
-            ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.rojo));
-            patientEdt.setBackgroundTintList(colorStateList);
-            error = true;
-        } else {
-            patientEdt.setTextColor(Color.WHITE);
-        }
+
 
         /*if (dateCreationEdt.getText().toString().trim().isEmpty()) {
             //patientEdt.setBackgroundColor(Color.RED);
@@ -273,7 +262,15 @@ public class Create extends AppCompatActivity {
         if (acMeds.getText().toString().trim().isEmpty()) {
             //patientEdt.setBackgroundColor(Color.RED);
             ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.rojo));
-            patientEdt.setBackgroundTintList(colorStateList);
+            //patientEdt.setBackgroundTintList(colorStateList);
+
+            if(this.meds.contains(acMeds.getText())){
+                //todo guay sigue para adelante
+                //limpio los mensajes de error
+            }else{
+                // muestro los mensajes de error
+                // y evito que se mande la informacion al servidor
+            }
             error = true;
         } else {
             acMeds.setTextColor(Color.WHITE);
@@ -296,7 +293,7 @@ public class Create extends AppCompatActivity {
         tvMensajeError.setVisibility(View.INVISIBLE);
 
 
-        postData(recipeId, patients.get(0).getId(), dateCreationEdt.getText().toString(), acMeds.getText().toString(), tomasEdt.getText().toString());
+        postData(recipeId, idPatientSelected, dateCreationEdt.getText().toString(), acMeds.getText().toString(), tomasEdt.getText().toString());
 
     }
 

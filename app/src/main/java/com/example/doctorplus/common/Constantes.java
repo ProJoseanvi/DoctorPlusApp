@@ -2,7 +2,7 @@ package com.example.doctorplus.common;
 
 //Aqui añadiremos constantes accesibles desde todas las partes de la App
  public class Constantes {
-     public static final String API_DOCTORPLUS_BASE_URL = "http://192.168.1.72:8080/demo/";
+     public static final String API_DOCTORPLUS_BASE_URL = "http://172.26.14.142:8080/demo/";
 
      public static final String USER_ROLE = "user_role";
      public static final String USER_ID = "user_id";

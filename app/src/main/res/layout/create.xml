@@ -61,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPatientCreate" />
+        app:layout_constraintTop_toBottomOf="@+id/autoCompletePatients" />
 
     <TextView
         android:id="@+id/textViewMedicamRecet"
@@ -91,25 +91,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/autoCompleteMeds"
         tools:text="@string/TextViewTomasCreacion" />
-
-    <EditText
-        android:id="@+id/editTextPatientCreate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="30dp"
-        android:backgroundTint="@color/white"
-        android:ems="10"
-        android:hint="@string/EtHintPaciente"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text=""
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCreacionPac" />
 
     <EditText
         android:id="@+id/editTextDateCreation"
@@ -198,5 +179,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMedicamRecet" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompletePatients"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="@android:color/white"
+        android:hint="@string/AutoCompletePatients"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCreacionPac" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
