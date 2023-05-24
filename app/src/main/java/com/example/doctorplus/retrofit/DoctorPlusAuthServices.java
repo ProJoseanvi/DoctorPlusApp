@@ -7,8 +7,8 @@ import com.example.doctorplus.retrofit.request.RequestSearchRecipe;
 import com.example.doctorplus.retrofit.response.ResponseCreateRecipe;
 import com.example.doctorplus.retrofit.response.ResponseListMeds;
 import com.example.doctorplus.retrofit.response.ResponseListPatients;
+import com.example.doctorplus.retrofit.response.ResponseListRecipes;
 import com.example.doctorplus.retrofit.response.ResponseRecipeId;
-import com.example.doctorplus.retrofit.response.ResponseSearchRecipe;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -19,20 +19,27 @@ import retrofit2.http.POST;
 public interface DoctorPlusAuthServices {
 
     //Aqui agrupamos todos los servicios securizados en forma de interfaz
+
     @GET("recipe/id")
     Call<ResponseRecipeId> getRecipeId (@Header("Authorization") String authHeader);
 
     @POST("recipe/create")
-    Call<ResponseCreateRecipe>  createPost (@Header("Authorization") String authHeader, @Body RequestCreateRecipe requestCreateRecipe);
-
-    @GET("SearchReceta")
-    Call<ResponseSearchRecipe> getSearchRecipe (@Header("Authorization") String authHeader, @Body RequestSearchRecipe requestSearchRecipe);
+    Call<ResponseCreateRecipe> createPost (@Header("Authorization") String authHeader, @Body RequestCreateRecipe requestCreateRecipe);
 
     @GET("meds/list")
     Call<ResponseListMeds> getMeds (@Header("Authorization") String authHeader);
 
-    @GET("patients/list")
-    Call<ResponseListPatients> getPatients(@Header("Authorization") String authHeader);
+    @GET("patient/list")
+    Call<ResponseListPatients> getPatients (@Header("Authorization") String authHeader);
+
+    @POST("patient/listByRecipe")
+    Call<ResponseListPatients> getPatientsByRecipe (@Header("Authorization") String authHeader, @Body RequestSearchRecipe requestSearchRecipe);
+
+    @POST("recipe/dates")
+    Call<ResponseListRecipes> getDates (@Header("Authorization") String authHeader, @Body RequestSearchRecipe requestSearchRecipe);
+
+    @POST("recipe/ids")
+    Call<ResponseListRecipes> getIds (@Header("Authorization") String authHeader, @Body RequestSearchRecipe requestSearchRecipe);
 }
 
 

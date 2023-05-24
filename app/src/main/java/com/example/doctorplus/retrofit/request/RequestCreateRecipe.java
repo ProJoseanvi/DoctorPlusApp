@@ -3,8 +3,10 @@ package com.example.doctorplus.retrofit.request;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
 
-    public class RequestCreateRecipe {
+
+public class RequestCreateRecipe {
 
         @SerializedName("id")
         @Expose
@@ -46,6 +48,9 @@ import com.google.gson.annotations.SerializedName;
         }
 
         public RequestCreateRecipe(int numberRecipe, String patient, String date, String medication, int tomas) {
+        }
+
+        public RequestCreateRecipe(String recipeId, List patientId, List date) {
         }
 
         public String getRecetaId() { return recetaId; }

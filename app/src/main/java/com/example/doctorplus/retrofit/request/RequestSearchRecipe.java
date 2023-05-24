@@ -3,62 +3,47 @@ package com.example.doctorplus.retrofit.request;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-    public class RequestSearchRecipe {
+public class RequestSearchRecipe {
 
-        @SerializedName("receta_id")
+        @SerializedName("id")
         @Expose
-        private String recetaId;
+        private String id;
         @SerializedName("patient_id")
         @Expose
-        private String patientId;
-        @SerializedName("fecha")
+        private Integer patientId;
+        @SerializedName("date")
         @Expose
-        private String fecha;
+        private String date;
 
-        /**
-         * No args constructor for use in serialization
-         *
-         */
-        public RequestSearchRecipe(int numberRecipe, String patient, String date, String medication, int tomas) {
-        }
-
-        /**
-         * @param recetaId
-         * @param patientId
-         * @param fecha
-         */
-
-
-        public RequestSearchRecipe(String recetaId, String patientId, String fecha, String medicamento) {
+        public RequestSearchRecipe(String recetaId, Integer patientId, String fecha) {
             super();
-            this.recetaId = recetaId;
+            this.id = recetaId;
             this.patientId = patientId;
-            this.fecha = fecha;
+            this.date = fecha;
         }
 
-        public String getRecetaId() {
-            return recetaId;
-        }
-
-        public void setRecetaId(String recetaId) {
-            this.recetaId = recetaId;
-        }
-
-        public String getPatientId() {
-            return patientId;
-        }
-
-        public void setPatientId(String patientId) {
-            this.patientId = patientId;
-        }
-
-        public String getFecha() {
-            return fecha;
-        }
-
-        public void setFecha(String fecha) {
-            this.fecha = fecha;
-        }
-
+    public String getId() {
+        return id;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Integer getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(Integer patientId) {
+        this.patientId = patientId;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+}
 

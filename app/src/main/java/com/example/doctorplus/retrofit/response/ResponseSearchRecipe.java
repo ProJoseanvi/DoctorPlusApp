@@ -4,23 +4,19 @@ package com.example.doctorplus.retrofit.response;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class ResponseSearchRecipe {
 
     @SerializedName("receta_id")
     @Expose
-    private String recetaId;
+    private List recetaId;
     @SerializedName("paciente")
     @Expose
-    private String paciente;
+    private List paciente;
     @SerializedName("fecha")
     @Expose
-    private String fecha;
-    @SerializedName("medicamento")
-    @Expose
-    private String medicamento;
-    @SerializedName("tomas_diarias")
-    @Expose
-    private String tomasDiarias;
+    private List fecha;
 
     /**
      * No args constructor for use in serialization
@@ -31,60 +27,46 @@ public class ResponseSearchRecipe {
 
     /**
      *
-     * @param fecha
-     * @param tomasDiarias
+     * @param date
      * @param paciente
-     * @param medicamento
      * @param recetaId
      */
 
-    public ResponseSearchRecipe(String recetaId, String paciente, String fecha, String medicamento, String tomasDiarias) {
+    public ResponseSearchRecipe (List recetaId, List paciente, List date) {
         super();
         this.recetaId = recetaId;
         this.paciente = paciente;
-        this.fecha = fecha;
-        this.medicamento = medicamento;
-        this.tomasDiarias = tomasDiarias;
+        this.fecha = date;
     }
 
-    public String getRecetaId() {
+    public List getRecetaId() {
         return recetaId;
     }
 
-    public void setRecetaId(String recetaId) {
+    public void setRecetaId(List recetaId) {
         this.recetaId = recetaId;
     }
 
-    public String getPaciente() {
+    public List getPaciente() {
         return paciente;
     }
 
-    public void setPaciente(String paciente) {
+    public void setPaciente(List paciente) {
         this.paciente = paciente;
     }
 
-    public String getFecha() {
+    public List getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(List fecha) {
         this.fecha = fecha;
     }
 
-    public String getMedicamento() {
-        return medicamento;
+    public String getMessage() {
+        return null;
     }
-
-    public void setMedicamento(String medicamento) {
-        this.medicamento = medicamento;
+    public Object getSuccess() {
+        return null;
     }
-
-    public String getTomasDiarias() {
-        return tomasDiarias;
-    }
-
-    public void setTomasDiarias(String tomasDiarias) {
-        this.tomasDiarias = tomasDiarias;
-    }
-
 }

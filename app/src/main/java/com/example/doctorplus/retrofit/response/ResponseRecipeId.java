@@ -16,4 +16,8 @@ public class ResponseRecipeId {
     public void setId(String id) {
         this.id = id;
     }
+
+    public Object getIds() {
+        return null;
+    }
 }

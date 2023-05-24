@@ -196,7 +196,7 @@ public class Create extends AppCompatActivity {
 
     }
 
-    private void postData(String recipeId, Integer patientId, String date, String medication, String tomas) {
+    private void postData (String recipeId, Integer patientId, String date, String medication, String tomas) {
 
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -207,7 +207,6 @@ public class Create extends AppCompatActivity {
         RequestCreateRecipe requestCreateRecipe = new RequestCreateRecipe(recipeId, patientId, date, medication, tomas);
 
         Call<ResponseCreateRecipe> call = doctorPlusAuthServices.createPost("Bearer " + SharedPreferencesManager.getSomeStringValue(USER_TOKEN), requestCreateRecipe);
-
 
         call.enqueue(new Callback<ResponseCreateRecipe>() {
             @Override
