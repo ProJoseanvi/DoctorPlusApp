@@ -14,12 +14,6 @@ import com.google.gson.annotations.SerializedName;
         @SerializedName("fecha")
         @Expose
         private String fecha;
-        @SerializedName("medicamento")
-        @Expose
-        private String medicamento;
-        @SerializedName("tomas_diarias")
-        @Expose
-        private String tomasDiarias;
 
         /**
          * No args constructor for use in serialization
@@ -32,7 +26,6 @@ import com.google.gson.annotations.SerializedName;
          * @param recetaId
          * @param patientId
          * @param fecha
-         * @param medicamento
          */
 
 
@@ -41,8 +34,6 @@ import com.google.gson.annotations.SerializedName;
             this.recetaId = recetaId;
             this.patientId = patientId;
             this.fecha = fecha;
-            this.medicamento = medicamento;
-            this.tomasDiarias = tomasDiarias;
         }
 
         public String getRecetaId() {
@@ -67,22 +58,6 @@ import com.google.gson.annotations.SerializedName;
 
         public void setFecha(String fecha) {
             this.fecha = fecha;
-        }
-
-        public String getMedicamento() {
-            return medicamento;
-        }
-
-        public void setMedicamento(String medicamento) {
-            this.medicamento = medicamento;
-        }
-
-        public String getTomasDiarias() {
-            return tomasDiarias;
-        }
-
-        public void setTomasDiarias(String tomasDiarias) {
-            this.tomasDiarias = tomasDiarias;
         }
 
     }
