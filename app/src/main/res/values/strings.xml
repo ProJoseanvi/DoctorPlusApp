@@ -201,6 +201,7 @@
     <string name="AutoCompleteRecipe">Escriba número de receta</string>
     <string name="AutoCompletePatient">Escriba el nombre del paciente</string>
     <string name="AutoCompleteDate">Escriba la fecha</string>
+    <string name="LogoDctrPls">LogoRewind</string>
 </resources>
 
 

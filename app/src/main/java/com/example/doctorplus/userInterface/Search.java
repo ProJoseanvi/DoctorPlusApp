@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.doctorplus.R;
+import com.example.doctorplus.common.Constantes;
 import com.example.doctorplus.common.Patient;
 import com.example.doctorplus.common.SharedPreferencesManager;
 import com.example.doctorplus.retrofit.DoctorPlusAuthServices;
@@ -81,15 +82,14 @@ public class Search extends AppCompatActivity implements View.OnClickListener {
         events();
         retrofitInit();
 
-        generateListPatients();
-        generateListDates();
         generateListId();
+        generateListDates();
+        generateListPatients();
+
+        btnSearch.setOnClickListener(this);
+        ivPantallaRewind.setOnClickListener(this);
 
 
-        btnSearch.setOnClickListener(this::onClick);
-        ivPantallaRewind.setOnClickListener(this::onClick);
-
-        
         ImageView imageViewLogoRewind = findViewById(R.id.imageViewLogoRewind);
         imageViewLogoRewind.setOnClickListener(v -> {
             Intent intent = new Intent(Search.this, MedicUser.class);
@@ -98,6 +98,17 @@ public class Search extends AppCompatActivity implements View.OnClickListener {
 
 
     }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+
+        if (id == R.id.buttonBuscar) {
+            goToResult();
+        }
+    }
+
+
 
     private void events() {
     }
@@ -113,7 +124,6 @@ public class Search extends AppCompatActivity implements View.OnClickListener {
         callIds.enqueue(new Callback<ResponseListRecipes>() {
             @Override
             public void onResponse(@NonNull Call<ResponseListRecipes> call, @NonNull Response<ResponseListRecipes> response) {
-
                 if (response.isSuccessful()) {
                     assert response.body() != null;
                     recipesIds = response.body().getIds();
@@ -121,6 +131,8 @@ public class Search extends AppCompatActivity implements View.OnClickListener {
                     acNumberRecipe.setOnItemClickListener((parent, view, position, id) -> {
                         String p = (String) parent.getItemAtPosition(position);
                         recipeIdSelected = p;
+                        generateListDates();
+                        generateListPatients();
                     });
                 } else {
                     Toast.makeText(Search.this, "No se ha logrado conectar con el servidor", Toast.LENGTH_SHORT).show();
@@ -153,6 +165,8 @@ public class Search extends AppCompatActivity implements View.OnClickListener {
                     acPatient.setOnItemClickListener((parent, view, position, id) -> {
                         Patient p = (Patient) parent.getItemAtPosition(position);
                         patientIdSelected = p.getId();
+                        generateListDates();
+                        generateListId();
                     });
                 } else {
                     Toast.makeText(Search.this, "No se ha logrado conectar con el servidor", Toast.LENGTH_SHORT).show();
@@ -163,8 +177,8 @@ public class Search extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onFailure(@NonNull Call<ResponseListPatients> call, @NonNull Throwable t) {
 
-            }    
-    
+            }
+
         });
 
     }
@@ -184,6 +198,8 @@ public class Search extends AppCompatActivity implements View.OnClickListener {
                     acDate.setAdapter(new ArrayAdapter<>(Search.this, simple_dropdown_item_1line, dates));
                     acDate.setOnItemClickListener((parent, view, position, id) -> {
                         dateSelected = (String) parent.getItemAtPosition(position);
+                        generateListPatients();
+                        generateListId();
                     });
                 } else {
                     Toast.makeText(Search.this, "No se ha logrado conectar con el servidor", Toast.LENGTH_SHORT).show();
@@ -200,6 +216,15 @@ public class Search extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    private void goToResult() {
+        SharedPreferencesManager.setSomeStringValue(Constantes.DATE, this.dateSelected);
+        SharedPreferencesManager.setSomeStringValue(Constantes.RECIPE_ID, this.recipeIdSelected);
+        SharedPreferencesManager.setSomeStringValue(Constantes.PATIENT_ID, String.valueOf(this.patientIdSelected));
+        Intent intent = new Intent(this, ResultsSearchMedic.class);
+        startActivity(intent);
+        finish();
+    }
+
     private void getSearchRecipe () {
 
 
@@ -210,46 +235,11 @@ public class Search extends AppCompatActivity implements View.OnClickListener {
 
         RequestSearchRecipe requestSearchRecipe = new RequestSearchRecipe(recipeIdSelected, patientIdSelected, this.dateSelected);
 
-        /*Call<ResponseSearchRecipe> call = doctorPlusAuthServices.getSearchRecipe("Bearer " + SharedPreferencesManager.getSomeStringValue(USER_TOKEN), requestSearchRecipe);
-
-
-        call.enqueue(new Callback<ResponseSearchRecipe>() {
-            @Override
-            public void onResponse(@NonNull Call<ResponseSearchRecipe> call, @NonNull Response<ResponseSearchRecipe> response) {
-                Toast.makeText(Search.this, "Datos añadidos a la API", Toast.LENGTH_SHORT).show();
-
-                ResponseSearchRecipe responseFromAPI = response.body();
-                assert responseFromAPI != null;
-                Toast.makeText(Search.this, responseFromAPI.getMessage(), Toast.LENGTH_SHORT).show();
-                if (responseFromAPI.getSuccess().equals("ok")) {
-
-                    generateListId();
-                    generateListDates();
-                    generateListPatients();
-
-
-                    acNumberRecipe.setText("");
-                    acPatient.setText("");
-                    acDate.setText("");
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<ResponseSearchRecipe> call, @NonNull Throwable t) {
-                Toast.makeText(Search.this, "No se ha logrado conectar con el servidor", Toast.LENGTH_SHORT).show();
-            }
-        });*/
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 
 
 }
+
 
 
 

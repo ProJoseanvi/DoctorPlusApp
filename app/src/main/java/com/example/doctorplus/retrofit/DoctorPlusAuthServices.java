@@ -8,6 +8,7 @@ import com.example.doctorplus.retrofit.response.ResponseCreateRecipe;
 import com.example.doctorplus.retrofit.response.ResponseListMeds;
 import com.example.doctorplus.retrofit.response.ResponseListPatients;
 import com.example.doctorplus.retrofit.response.ResponseListRecipes;
+import com.example.doctorplus.retrofit.response.ResponseRecipe;
 import com.example.doctorplus.retrofit.response.ResponseRecipeId;
 
 import retrofit2.Call;
@@ -40,6 +41,9 @@ public interface DoctorPlusAuthServices {
 
     @POST("recipe/ids")
     Call<ResponseListRecipes> getIds (@Header("Authorization") String authHeader, @Body RequestSearchRecipe requestSearchRecipe);
+
+    @POST("recipe/get")
+    Call<ResponseRecipe> getRecipe(@Header("Authorization") String authHeader, @Body RequestSearchRecipe requestSearchRecipe);
 }
 
 
