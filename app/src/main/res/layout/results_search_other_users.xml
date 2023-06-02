@@ -8,40 +8,6 @@
     android:background="@color/teal_700"
     android:backgroundTint="@color/teal_700">
 
-    <Switch
-        android:id="@+id/switchPreparada"
-        android:layout_width="wrap_content"
-        android:layout_height="27dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="35dp"
-        android:text="@string/SwitchPreparada"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchEntregada"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <Switch
-        android:id="@+id/switchEntregada"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="96dp"
-        android:minHeight="48dp"
-        android:text="@string/SwitchEntregada"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ImageView
         android:id="@+id/imageViewLogoReverse2"
         android:layout_width="0dp"
@@ -60,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="250dp"
         android:text="@string/TextViewNumReceta2"
         android:textColor="@color/black"
@@ -87,12 +53,14 @@
         android:id="@+id/textViewPaciente2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:text="@string/TextViewPaciente4"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNumReceta3"
-        tools:layout_editor_absoluteX="30dp" />
+        app:layout_constraintEnd_toEndOf="@+id/textViewNumReceta3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewNumReceta3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNumReceta3" />
 
     <TextView
         android:id="@+id/textViewNombrePaciente"
@@ -187,19 +155,59 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewTomas" />
 
     <TextView
-        android:id="@+id/textViewEstadoReceta2"
+        android:id="@+id/textViewEstado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="204dp"
+        android:layout_marginBottom="130dp"
         android:text="@string/EstadoReceta2"
-        android:textColor="@color/design_default_color_on_secondary"
+        android:textColor="@color/design_default_color_surface"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintHorizontal_bias="0.174"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioButton
+        android:id="@+id/radioButtonPreparada"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="220dp"
+        android:layout_marginBottom="65dp"
+        android:text="@string/rbPrep"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTomas2"
-        app:layout_constraintVertical_bias="0.0" />
+        tools:ignore="VisualLintButtonSize,VisualLintOverlap" />
+
+    <RadioButton
+        android:id="@+id/radioButtonEntregada"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="220dp"
+        android:layout_marginBottom="15dp"
+        android:text="@string/rbEntregada"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="VisualLintButtonSize" />
+
+    <RadioButton
+        android:id="@+id/radioButtonCreada"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="220dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="65dp"
+        android:text="@string/rbCreada"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="VisualLintButtonSize" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

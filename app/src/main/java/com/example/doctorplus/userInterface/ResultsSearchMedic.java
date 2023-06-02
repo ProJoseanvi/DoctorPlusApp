@@ -15,12 +15,16 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.dynamicanimation.animation.FloatValueHolder;
 
 import com.example.doctorplus.R;
+import com.example.doctorplus.common.Constantes;
 import com.example.doctorplus.common.SharedPreferencesManager;
 import com.example.doctorplus.retrofit.DoctorPlusAuthServices;
 import com.example.doctorplus.retrofit.DoctorPlusClient;
 import com.example.doctorplus.retrofit.request.RequestSearchRecipe;
+import com.example.doctorplus.retrofit.response.ResponseCreateRecipe;
+import com.example.doctorplus.retrofit.response.ResponseDeleteRecipe;
 import com.example.doctorplus.retrofit.response.ResponseRecipe;
 
 import java.util.Objects;
@@ -40,6 +44,10 @@ public class ResultsSearchMedic extends AppCompatActivity implements View.OnClic
     TextView tvDate;
     TextView tvMeds;
     TextView tvNumberTomas;
+    private FloatValueHolder allRecipes;
+    Button btnDelReceta;
+
+    String idRecipe;
 
     private void retrofitInit() {
         doctorPlusClient = DoctorPlusClient.getInstance();
@@ -57,15 +65,15 @@ public class ResultsSearchMedic extends AppCompatActivity implements View.OnClic
         tvDate = findViewById(R.id.textViewDate);
         tvMeds = findViewById(R.id.textViewMeds);
         tvNumberTomas = findViewById(R.id.textViewNumberTomas);
-        ImageView ivLogoReverse = findViewById(R.id.imageViewLogoReverse);
+        //ImageView ivLogoReverse = findViewById(R.id.imageViewLogoReverse);
+        btnDelReceta = findViewById(R.id.buttonDelReceta);
         retrofitInit();
 
         getRecipeInfo();
 
-        Button buttonCreaReceta = findViewById(R.id.buttonDelReceta);
-        buttonCreaReceta.setOnClickListener(this);
+        btnDelReceta.setOnClickListener(this::onClick);
 
-        ivLogoReverse.setOnClickListener(this::onClick);
+        //ivLogoReverse.setOnClickListener(this::onClick);
 
         ImageView imageViewLogoCreate = findViewById(R.id.imageViewLogoReverse);
         imageViewLogoCreate.setOnClickListener(v -> {
@@ -89,6 +97,7 @@ public class ResultsSearchMedic extends AppCompatActivity implements View.OnClic
                 if (response.isSuccessful()) {
                     assert response.body() != null;
                     ResponseRecipe recipe = response.body();
+                    idRecipe = recipe.getId();
                     tvRecipe.setText(recipe.getId());
                     tvPacient.setText(recipe.getNamePatient());
                     tvDate.setText(recipe.getDate());
@@ -109,10 +118,40 @@ public class ResultsSearchMedic extends AppCompatActivity implements View.OnClic
         });
     }
 
+    public void deleteRecipe (final String idRecipe) {
+        Call<ResponseDeleteRecipe> call = doctorPlusAuthServices.deleteRecipe("Bearer " + SharedPreferencesManager.getSomeStringValue(USER_TOKEN), idRecipe);
 
-    @Override
-    public void onClick(View v) {
+        call.enqueue(new Callback<ResponseDeleteRecipe>() {
+            @Override
+            public void onResponse(Call<ResponseDeleteRecipe> call, Response<ResponseDeleteRecipe> response) {
+                ResponseCreateRecipe responseFromAPI = response.body();
+                assert responseFromAPI != null;
+                if (responseFromAPI.getSuccess().equals("ok")) {
+                    SharedPreferencesManager.setSomeStringValue(Constantes.DELETE_MESSAGE, responseFromAPI.getMessage());
+                    Intent intent = new Intent(ResultsSearchMedic.this, Search.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(ResultsSearchMedic.this, "Error borrando los datos de la receta.", Toast.LENGTH_LONG).show();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<ResponseDeleteRecipe> call, Throwable t) {
+                // Mostrar mensaje de error al usuario
+                Toast.makeText(ResultsSearchMedic.this, "Error en la conexión inténtelo de nuevo", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
+    public void onClick(View v) {
+        int id = v.getId();
+
+        if (id == R.id.buttonDelReceta) {
+            deleteRecipe(idRecipe);
+        }else{
+            Toast.makeText(ResultsSearchMedic.this, "nononono", Toast.LENGTH_LONG).show();
+        }
+    }
+
 }
 

@@ -21,4 +21,5 @@ package com.example.doctorplus.common;
      public static final String USER_TOKEN = "user_token";
 
      public static final String RECIPE_ID = "id_recipe";
+    public static final String DELETE_MESSAGE = "delete_message";
 }

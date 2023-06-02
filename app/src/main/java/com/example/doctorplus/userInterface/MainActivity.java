@@ -116,6 +116,7 @@ import retrofit2.Response;
                             } else if (ROLE_OTHERS.equals(response.body().getRol())) {
                                 Intent i = new Intent(MainActivity.this, OtherUsers.class);
                                 startActivity(i);
+
                                 // Destruimos este Activity para que no se pueda volver.
                                 finish();
 

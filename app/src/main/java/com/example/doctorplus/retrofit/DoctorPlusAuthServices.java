@@ -5,6 +5,7 @@ package com.example.doctorplus.retrofit;
 import com.example.doctorplus.retrofit.request.RequestCreateRecipe;
 import com.example.doctorplus.retrofit.request.RequestSearchRecipe;
 import com.example.doctorplus.retrofit.response.ResponseCreateRecipe;
+import com.example.doctorplus.retrofit.response.ResponseDeleteRecipe;
 import com.example.doctorplus.retrofit.response.ResponseListMeds;
 import com.example.doctorplus.retrofit.response.ResponseListPatients;
 import com.example.doctorplus.retrofit.response.ResponseListRecipes;
@@ -13,9 +14,12 @@ import com.example.doctorplus.retrofit.response.ResponseRecipeId;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface DoctorPlusAuthServices {
 
@@ -43,7 +47,13 @@ public interface DoctorPlusAuthServices {
     Call<ResponseListRecipes> getIds (@Header("Authorization") String authHeader, @Body RequestSearchRecipe requestSearchRecipe);
 
     @POST("recipe/get")
-    Call<ResponseRecipe> getRecipe(@Header("Authorization") String authHeader, @Body RequestSearchRecipe requestSearchRecipe);
+    Call<ResponseRecipe> getRecipe (@Header("Authorization") String authHeader, @Body RequestSearchRecipe requestSearchRecipe);
+
+    @DELETE("recipe/delete/{idRecipe}")
+    Call<ResponseDeleteRecipe> deleteRecipe (@Header("Authorization") String authHeader, @Path("idRecipe") String idRecipe);
+
+    @PUT("recipe/change/{idRecipe}/{state}")
+    Call<ResponseDeleteRecipe> changeState (@Header("Authorization") String authHeader, @Path("idRecipe") String idRecipe, @Path("state") Integer state);
 }
 
 

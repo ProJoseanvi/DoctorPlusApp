@@ -2,6 +2,7 @@ package com.example.doctorplus.userInterface;
 
 import static android.R.layout.simple_dropdown_item_1line;
 import static com.example.doctorplus.common.Constantes.API_DOCTORPLUS_BASE_URL;
+import static com.example.doctorplus.common.Constantes.ROLE_MEDIC;
 import static com.example.doctorplus.common.Constantes.USER_TOKEN;
 
 import android.R.layout;
@@ -96,6 +97,11 @@ public class Search extends AppCompatActivity implements View.OnClickListener {
             startActivity(intent);
         });
 
+
+        if(SharedPreferencesManager.getSomeStringValue(Constantes.DELETE_MESSAGE) != null){
+            Toast.makeText(Search.this, SharedPreferencesManager.getSomeStringValue(Constantes.DELETE_MESSAGE), Toast.LENGTH_LONG).show();
+            SharedPreferencesManager.setSomeStringValue(Constantes.DELETE_MESSAGE, null);
+        }
 
     }
 
@@ -220,7 +226,13 @@ public class Search extends AppCompatActivity implements View.OnClickListener {
         SharedPreferencesManager.setSomeStringValue(Constantes.DATE, this.dateSelected);
         SharedPreferencesManager.setSomeStringValue(Constantes.RECIPE_ID, this.recipeIdSelected);
         SharedPreferencesManager.setSomeStringValue(Constantes.PATIENT_ID, String.valueOf(this.patientIdSelected));
-        Intent intent = new Intent(this, ResultsSearchMedic.class);
+        String role =  SharedPreferencesManager.getSomeStringValue(Constantes.USER_ROLE);
+        Intent intent;
+        if(ROLE_MEDIC.equals(role)) {
+            intent = new Intent(this, ResultsSearchMedic.class);
+        }else{// if(ROLE_OTHERS.equals(role))
+            intent = new Intent(this, ResultsSearchOtherUsers.class);
+        }
         startActivity(intent);
         finish();
     }
