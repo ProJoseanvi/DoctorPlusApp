@@ -44,6 +44,7 @@ public class ResultsSearchMedic extends AppCompatActivity implements View.OnClic
     TextView tvDate;
     TextView tvMeds;
     TextView tvNumberTomas;
+
     private FloatValueHolder allRecipes;
     Button btnDelReceta;
 
@@ -67,8 +68,8 @@ public class ResultsSearchMedic extends AppCompatActivity implements View.OnClic
         tvNumberTomas = findViewById(R.id.textViewNumberTomas);
         //ImageView ivLogoReverse = findViewById(R.id.imageViewLogoReverse);
         btnDelReceta = findViewById(R.id.buttonDelReceta);
-        retrofitInit();
 
+        retrofitInit();
         getRecipeInfo();
 
         btnDelReceta.setOnClickListener(this::onClick);

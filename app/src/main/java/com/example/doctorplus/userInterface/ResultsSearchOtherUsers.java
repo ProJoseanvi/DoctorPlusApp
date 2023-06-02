@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,14 +39,15 @@ public class ResultsSearchOtherUsers extends AppCompatActivity {
     TextView tvMeds;
     TextView tvNumberTomas;
 
+    RadioGroup rgEstado;
+
+    RadioButton rbPreparada,rbEntregada,rbCreada;
+    private boolean rbEntregadaPressed;
+
     private void retrofitInit() {
         doctorPlusClient = DoctorPlusClient.getInstance();
         doctorPlusAuthServices = doctorPlusClient.getDoctorPlusIdRecipeRequest();
     }
-
-    private ImageView ivPantallaAnterior;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,34 +61,46 @@ public class ResultsSearchOtherUsers extends AppCompatActivity {
         tvDate = findViewById(R.id.textViewFecha3);
         tvMeds = findViewById(R.id.textViewMed);
         tvNumberTomas = findViewById(R.id.textViewTomas2);
-        ImageView  ivPantallaAnterior = findViewById(R.id.imageViewLogoReverse2);
-        retrofitInit();
+        rbPreparada = findViewById(R.id.radioButtonPreparada);
+        rbEntregada = findViewById(R.id.radioButtonEntregada);
+        rbCreada = findViewById(R.id.radioButtonCreada);
+        rgEstado = findViewById(R.id.radioGroupEstado);
 
+        findViews();
+        retrofitInit();
         getRecipeInfo();
 
-        ivPantallaAnterior = findViewById(R.id.imageViewLogoReverse2);
+
+        ImageView ivPantallaAnterior = findViewById(R.id.imageViewLogoReverse2);
         
-        findViews();
-
         ivPantallaAnterior.setOnClickListener(this::onClick);
-
 
         ImageView imageViewLogoCreate = findViewById(R.id.imageViewLogoReverse2);
         imageViewLogoCreate.setOnClickListener(v -> {
             Intent intent = new Intent(ResultsSearchOtherUsers.this, OtherUsers.class);
             startActivity(intent);
         });
+
+        RadioGroup radioGroup = findViewById(R.id.radioGroupEstado);
+
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            rbCreada.setEnabled(checkedId != R.id.radioButtonCreada);
+            rbPreparada.setEnabled(checkedId != R.id.radioButtonPreparada);
+            rbEntregada.setEnabled(checkedId != R.id.radioButtonCreada);
+        });
         
+    }
+
+
+
+    private void onClick(View view) {
     }
 
     private void findViews() {
 
     }
 
-    private void onClick(View view) {
-
-    }
-
+    
     private void getRecipeInfo() {
         String recipeIdSelected = SharedPreferencesManager.getSomeStringValue(RECIPE_ID);
         String dateSelected = SharedPreferencesManager.getSomeStringValue(DATE);
@@ -119,7 +134,8 @@ public class ResultsSearchOtherUsers extends AppCompatActivity {
         });
 
 
-        }
+    }
+
     }
 
 

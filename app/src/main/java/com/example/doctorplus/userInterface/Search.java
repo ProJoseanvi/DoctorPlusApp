@@ -93,8 +93,15 @@ public class Search extends AppCompatActivity implements View.OnClickListener {
 
         ImageView imageViewLogoRewind = findViewById(R.id.imageViewLogoRewind);
         imageViewLogoRewind.setOnClickListener(v -> {
-            Intent intent = new Intent(Search.this, MedicUser.class);
+            Intent intent;
+            String role =  SharedPreferencesManager.getSomeStringValue(Constantes.USER_ROLE);
+            if(ROLE_MEDIC.equals(role)) {
+                intent = new Intent(this, MedicUser.class);
+            }else{// if(ROLE_OTHERS.equals(role))
+                intent = new Intent(this, OtherUsers.class);
+            }
             startActivity(intent);
+            finish();
         });
 
 

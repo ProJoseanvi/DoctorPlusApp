@@ -17,7 +17,10 @@ import com.example.doctorplus.common.SharedPreferencesManager;
 
 import java.util.Objects;
 
+
+
 public class MedicUser extends AppCompatActivity implements View.OnClickListener {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,8 @@ public class MedicUser extends AppCompatActivity implements View.OnClickListener
 
         Button buttonBuscarReceta = findViewById(R.id.buttonBuscarReceta);
         buttonBuscarReceta.setOnClickListener(this);
+
+
     }
 
 
