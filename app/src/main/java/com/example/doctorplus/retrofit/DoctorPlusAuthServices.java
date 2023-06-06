@@ -4,6 +4,7 @@ package com.example.doctorplus.retrofit;
 
 import com.example.doctorplus.retrofit.request.RequestCreateRecipe;
 import com.example.doctorplus.retrofit.request.RequestSearchRecipe;
+import com.example.doctorplus.retrofit.response.ResponseChangeState;
 import com.example.doctorplus.retrofit.response.ResponseCreateRecipe;
 import com.example.doctorplus.retrofit.response.ResponseDeleteRecipe;
 import com.example.doctorplus.retrofit.response.ResponseListMeds;
@@ -53,7 +54,7 @@ public interface DoctorPlusAuthServices {
     Call<ResponseDeleteRecipe> deleteRecipe (@Header("Authorization") String authHeader, @Path("idRecipe") String idRecipe);
 
     @PUT("recipe/change/{idRecipe}/{state}")
-    Call<ResponseDeleteRecipe> changeState (@Header("Authorization") String authHeader, @Path("idRecipe") String idRecipe, @Path("state") Integer state);
+    Call<ResponseChangeState> changeState (@Header("Authorization") String authHeader, @Path("state") Integer state);
 }
 
 

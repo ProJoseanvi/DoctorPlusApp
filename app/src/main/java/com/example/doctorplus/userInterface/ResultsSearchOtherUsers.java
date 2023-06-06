@@ -22,6 +22,8 @@ import com.example.doctorplus.common.SharedPreferencesManager;
 import com.example.doctorplus.retrofit.DoctorPlusAuthServices;
 import com.example.doctorplus.retrofit.DoctorPlusClient;
 import com.example.doctorplus.retrofit.request.RequestSearchRecipe;
+import com.example.doctorplus.retrofit.response.ResponseChangeState;
+import com.example.doctorplus.retrofit.response.ResponseCreateRecipe;
 import com.example.doctorplus.retrofit.response.ResponseRecipe;
 
 import retrofit2.Call;
@@ -38,11 +40,11 @@ public class ResultsSearchOtherUsers extends AppCompatActivity {
     TextView tvDate;
     TextView tvMeds;
     TextView tvNumberTomas;
-
     RadioGroup rgEstado;
-
     RadioButton rbPreparada,rbEntregada,rbCreada;
+
     private boolean rbEntregadaPressed;
+
 
     private void retrofitInit() {
         doctorPlusClient = DoctorPlusClient.getInstance();
@@ -86,18 +88,13 @@ public class ResultsSearchOtherUsers extends AppCompatActivity {
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             rbCreada.setEnabled(checkedId != R.id.radioButtonCreada);
             rbPreparada.setEnabled(checkedId != R.id.radioButtonPreparada);
-            rbEntregada.setEnabled(checkedId != R.id.radioButtonCreada);
+            rbEntregada.setEnabled(checkedId != R.id.radioButtonEntregada);
         });
         
     }
 
 
-
-    private void onClick(View view) {
-    }
-
     private void findViews() {
-
     }
 
     
@@ -134,6 +131,44 @@ public class ResultsSearchOtherUsers extends AppCompatActivity {
         });
 
 
+    }
+
+    public void changeState (final Integer state) {
+        Call<ResponseChangeState> call = doctorPlusAuthServices.changeState("Bearer " + SharedPreferencesManager.getSomeStringValue(USER_TOKEN), state);
+
+        call.enqueue(new Callback<ResponseChangeState>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseChangeState> call, @NonNull Response<ResponseChangeState> response) {
+                ResponseCreateRecipe responseFromAPI = response.body();
+                assert responseFromAPI != null;
+                if (responseFromAPI.getSuccess().equals("ok")) {
+                    Toast.makeText(ResultsSearchOtherUsers.this, "Estado de la receta cambiado.", Toast.LENGTH_LONG).show();
+
+                }else{
+                    Toast.makeText(ResultsSearchOtherUsers.this, "Error en cambio de estado.", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseChangeState> call, @NonNull Throwable t) {
+                // Mostrar mensaje de error al usuario
+                Toast.makeText(ResultsSearchOtherUsers.this, "Error en la conexión inténtelo de nuevo", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void onClick(View v) {
+        int id = v.getId();
+
+        if (id == R.id.radioButtonCreada) {
+            changeState(1); // Estado "creada"
+        } else if (id == R.id.radioButtonPreparada) {
+            changeState(2); // Estado "preparada"
+        } else if (id == R.id.radioButtonEntregada) {
+            changeState(3); // Estado "entregada"
+        } else {
+            Toast.makeText(ResultsSearchOtherUsers.this, "La he cagado!", Toast.LENGTH_LONG).show();
+        }
     }
 
     }
