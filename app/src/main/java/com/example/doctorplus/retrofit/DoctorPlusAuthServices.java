@@ -54,7 +54,7 @@ public interface DoctorPlusAuthServices {
     Call<ResponseDeleteRecipe> deleteRecipe (@Header("Authorization") String authHeader, @Path("idRecipe") String idRecipe);
 
     @PUT("recipe/change/{idRecipe}/{state}")
-    Call<ResponseChangeState> changeState (@Header("Authorization") String authHeader, @Path("state") Integer state);
+    Call<ResponseChangeState> changeState (@Header("Authorization") String authHeader, @Path("idRecipe") String idRecipe, @Path("state") Integer state);
 }
 
 

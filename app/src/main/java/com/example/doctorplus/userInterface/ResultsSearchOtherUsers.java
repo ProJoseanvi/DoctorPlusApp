@@ -83,12 +83,17 @@ public class ResultsSearchOtherUsers extends AppCompatActivity {
             startActivity(intent);
         });
 
-        RadioGroup radioGroup = findViewById(R.id.radioGroupEstado);
-
-        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            rbCreada.setEnabled(checkedId != R.id.radioButtonCreada);
-            rbPreparada.setEnabled(checkedId != R.id.radioButtonPreparada);
-            rbEntregada.setEnabled(checkedId != R.id.radioButtonEntregada);
+        rgEstado.setOnCheckedChangeListener((group, checkedId) -> {
+            System.out.println("ID: " + checkedId);
+            if (checkedId == R.id.radioButtonCreada) {
+                changeState(1); // Estado "creada"
+            } else if (checkedId == R.id.radioButtonPreparada) {
+                changeState(2); // Estado "preparada"
+            } else if (checkedId == R.id.radioButtonEntregada) {
+                changeState(3); // Estado "entregada"
+            } else {
+                Toast.makeText(ResultsSearchOtherUsers.this, "La he cagado!", Toast.LENGTH_LONG).show();
+            }
         });
         
     }
@@ -117,7 +122,18 @@ public class ResultsSearchOtherUsers extends AppCompatActivity {
                     tvDate.setText(recipe.getDate());
                     tvMeds.setText(recipe.getMed());
                     tvNumberTomas.setText(recipe.getTakes());
-                    //controlState.setValue(recipe.getState());
+                    switch(recipe.getState()){
+                        case (1):
+                            rgEstado.check(R.id.radioButtonCreada);
+                            break;
+                        case (2):
+                            rgEstado.check(R.id.radioButtonPreparada);
+                            break;
+                        case (3):
+                            rgEstado.check(R.id.radioButtonEntregada);
+                            break;
+                    }
+
                 } else {
                     Toast.makeText(ResultsSearchOtherUsers.this, "No se ha logrado conectar con el servidor", Toast.LENGTH_SHORT).show();
                 }
@@ -134,7 +150,8 @@ public class ResultsSearchOtherUsers extends AppCompatActivity {
     }
 
     public void changeState (final Integer state) {
-        Call<ResponseChangeState> call = doctorPlusAuthServices.changeState("Bearer " + SharedPreferencesManager.getSomeStringValue(USER_TOKEN), state);
+        String idRecipe = SharedPreferencesManager.getSomeStringValue(RECIPE_ID);
+        Call<ResponseChangeState> call = doctorPlusAuthServices.changeState("Bearer " + SharedPreferencesManager.getSomeStringValue(USER_TOKEN), idRecipe, state);
 
         call.enqueue(new Callback<ResponseChangeState>() {
             @Override

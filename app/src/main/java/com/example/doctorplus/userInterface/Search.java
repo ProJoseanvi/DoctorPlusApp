@@ -230,18 +230,28 @@ public class Search extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void goToResult() {
-        SharedPreferencesManager.setSomeStringValue(Constantes.DATE, this.dateSelected);
-        SharedPreferencesManager.setSomeStringValue(Constantes.RECIPE_ID, this.recipeIdSelected);
-        SharedPreferencesManager.setSomeStringValue(Constantes.PATIENT_ID, String.valueOf(this.patientIdSelected));
-        String role =  SharedPreferencesManager.getSomeStringValue(Constantes.USER_ROLE);
-        Intent intent;
-        if(ROLE_MEDIC.equals(role)) {
-            intent = new Intent(this, ResultsSearchMedic.class);
-        }else{// if(ROLE_OTHERS.equals(role))
-            intent = new Intent(this, ResultsSearchOtherUsers.class);
+
+        if (this.recipeIdSelected != null) {
+            SharedPreferencesManager.setSomeStringValue(Constantes.RECIPE_ID, this.recipeIdSelected);
+            if (this.dateSelected != null) {
+                SharedPreferencesManager.setSomeStringValue(Constantes.DATE, this.dateSelected);
+            }
+            if (this.patientIdSelected != null) {
+                SharedPreferencesManager.setSomeStringValue(Constantes.PATIENT_ID, String.valueOf(this.patientIdSelected));
+            }
+            String role =  SharedPreferencesManager.getSomeStringValue(Constantes.USER_ROLE);
+            Intent intent;
+            if(ROLE_MEDIC.equals(role)) {
+                intent = new Intent(this, ResultsSearchMedic.class);
+            }else{// if(ROLE_OTHERS.equals(role))
+                intent = new Intent(this, ResultsSearchOtherUsers.class);
+            }
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(Search.this, "Debe indicar al menos un identificador de receta.", Toast.LENGTH_SHORT).show();
         }
-        startActivity(intent);
-        finish();
+
     }
 
     private void getSearchRecipe () {
